@@ -2,9 +2,24 @@
 // vnycall74@naver.com - http://holykisa.tistory.com
 
 if(keyboard_check(vk_left))
+{
 	x -= moveSpeed;
+	
+	image_speed = 1;
+	image_xscale = -1;
+}
 else if(keyboard_check(vk_right))
+{
 	x += moveSpeed;
+	
+	image_speed = 1;
+	image_xscale = 1;
+}
+else
+{
+	image_index = 0;
+	image_speed = 0;
+}
 
 if(keyboard_check(vk_up))
 	if(!isJump || doubleJump)

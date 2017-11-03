@@ -12,3 +12,5 @@ isJump = false;
 lever_checekd = false;
 
 doubleJump = false;
+
+image_speed = 0;
