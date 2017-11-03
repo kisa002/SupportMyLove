@@ -11,7 +11,11 @@ if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_
 	vspeed = 0;	
 	gravity = 0;
 	
-	move_contact_solid(270, -1);
+	if(!(place_meeting(x, y + vspeed, obj_lever_block) || place_meeting(x, y + vspeed, obj_lever_block1) || place_meeting(x, y + vspeed, obj_lever_block2)))
+		move_contact_solid(270, -1);
 }
 else
 	gravity = 0.5;
+	
+if(place_meeting(x, y, obj_trap) || place_meeting(x, y, obj_trap2))
+	instance_destroy();

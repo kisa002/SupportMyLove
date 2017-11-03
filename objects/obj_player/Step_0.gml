@@ -56,19 +56,33 @@ if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_
 
 if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2))
 {
-	if(!lever_checked)
-	{
-		lever_checked = true;
+	if(keyboard_check(vk_down))
+		if(!lever_checked)
+		{
+			lever_checked = true;
 	
-		if(instance_exists(obj_lever1))
-			lever = instance_place(x, y, obj_lever1);
-		else
-			lever = instance_place(x, y, obj_lever2);
+			if(instance_exists(obj_lever1))
+			{
+				lever = instance_place(x, y, obj_lever1);
+				
+				lever.image_xscale = -1;
+			}
+			else
+			{
+				lever = instance_place(x, y, obj_lever2);
+				
+				lever.image_xscale = lever.image_xscale * -1;
+			}
 	
-		lever.isUse = !lever.isUse;
-	
-		lever.image_xscale = lever.image_xscale * -1;
-	}
+			lever.isUse = !lever.isUse;
+		}
 }
 else
 	lever_checked = false;
+	
+if(place_meeting(x, y, obj_scaffolding))
+{
+	scaffolding = instance_place(x, y, obj_scaffolding);
+	
+	scaffolding.isUse = true;
+}

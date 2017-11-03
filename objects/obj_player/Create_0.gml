@@ -1,7 +1,7 @@
 /// @description Init
 // vnycall74@naver.com - http://holykisa.tistory.com
 
-moveSpeed = 7;
+moveSpeed = 4;
 jumpSpeed = 1.5;
 //jumpSpeed = 7;
 
