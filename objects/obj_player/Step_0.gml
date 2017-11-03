@@ -11,19 +11,30 @@ if(keyboard_check(vk_up))
 	{
 		//isJump = true;
 		
-		vspeed -= 1;		
+		vspeed -= jumpSpeed;		
 		gravity = 0.5;
 	}
-	
-if(keyboard_key_release(vk_up))
+else if(keyboard_key_release(vk_up))
 	if(vspeed != 0)
 		isJump = false;
 
 if(vspeed < -7)
+{
+	isJump = true;
+	
 	vspeed = -7;
+}
 
 if(keyboard_check(vk_down))
 	y += jumpSpeed;
+
+if(place_meeting(x, y - vspeed - 2, obj_ground))
+{
+	isJump = false;
+	
+	vspeed = 0;	
+	gravity = 0.5;
+}
 
 if(place_meeting(x, y + vspeed, obj_ground))
 {
@@ -31,6 +42,18 @@ if(place_meeting(x, y + vspeed, obj_ground))
 
 	vspeed = 0;	
 	gravity = 0;
+	
+	move_contact_solid(270, -1);
 }
 
-show_debug_message(isJump);
+if(place_meeting(x, y - vspeed, obj_block))
+{
+	block = instance_place(x, y - vspeed, obj_block);
+	
+	if(!block.isMove)
+	{	
+		block.isMove = true;
+		
+		//block.y -= 32;
+	}
+}
