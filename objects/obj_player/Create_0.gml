@@ -8,3 +8,5 @@ jumpSpeed = 1.5;
 gravity = 0.5;
 
 isJump = false;
+
+lever_checekd = false;

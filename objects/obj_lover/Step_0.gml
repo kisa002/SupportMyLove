@@ -3,10 +3,10 @@
 
 x += moveSpeed;
 
-if(place_meeting(x, y + 4, obj_block))
+if(place_meeting(x, y + 4, obj_block1) || place_meeting(x, y + 4, obj_block2))
 	y -= 4;
 
-if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block))
+if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block1) || place_meeting(x, y + vspeed, obj_block2))
 {
 	vspeed = 0;	
 	gravity = 0;

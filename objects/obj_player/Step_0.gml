@@ -25,9 +25,6 @@ if(vspeed < -7)
 	vspeed = -7;
 }
 
-if(keyboard_check(vk_down))
-	y += jumpSpeed;
-
 if(place_meeting(x, y - vspeed - 2, obj_ground))
 {
 	isJump = false;
@@ -46,14 +43,32 @@ if(place_meeting(x, y + vspeed, obj_ground))
 	move_contact_solid(270, -1);
 }
 
-if(place_meeting(x, y - vspeed, obj_block))
+if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2))
 {
-	block = instance_place(x, y - vspeed, obj_block);
-	
-	if(!block.isMove)
-	{	
-		block.isMove = true;
+	if(instance_exists(obj_block1))
+		block = instance_place(x, y - vspeed, obj_block1);
+	else
+		block = instance_place(x, y - vspeed, obj_block2);
 		
-		//block.y -= 32;
+	if(!block.isMove)
+		block.isMove = true;
+}
+
+if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2))
+{
+	if(!lever_checked)
+	{
+		lever_checked = true;
+	
+		if(instance_exists(obj_lever1))
+			lever = instance_place(x, y, obj_lever1);
+		else
+			lever = instance_place(x, y, obj_lever2);
+	
+		lever.isUse = !lever.isUse;
+	
+		lever.image_xscale = lever.image_xscale * -1;
 	}
 }
+else
+	lever_checked = false;
