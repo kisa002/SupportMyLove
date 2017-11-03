@@ -7,21 +7,32 @@ else if(keyboard_check(vk_right))
 	x += moveSpeed;
 
 if(keyboard_check(vk_up))
-	if(!isJump)
+	if(!isJump || doubleJump)
 	{
-		//isJump = true;
+		if(doubleJump)
+		{
+			vspeed = -7;
+			doubleJump = false;
+		}
 		
 		vspeed -= jumpSpeed;		
 		gravity = 0.5;
 	}
 else if(keyboard_key_release(vk_up))
 	if(vspeed != 0)
-		isJump = false;
+	{
+		isJump = true;
+		
+		if(doubleJump)
+			doubleJump = false;
+	}
 
 if(vspeed < -7)
 {
-	isJump = true;
-	
+	if(isJump && doubleJump)
+		doubleJump = false;
+		
+	isJump = true;	
 	vspeed = -7;
 }
 
@@ -42,6 +53,9 @@ if(place_meeting(x, y + vspeed, obj_ground))
 	
 	move_contact_solid(270, -1);
 }
+
+if(! place_meeting(x, y, obj_ground))
+	gravity = 0.5;
 
 if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2) || place_meeting(x, y - vspeed, obj_block3))
 {
@@ -103,3 +117,15 @@ if(place_meeting(x, y, obj_scaffolding))
 
 if(place_meeting(x, y, obj_trap2))
 	instance_destroy();
+	
+if(place_meeting(x, y, obj_double))
+{
+	double = instance_place(x, y, obj_double);
+		
+	with(double)
+		instance_destroy();
+		
+	doubleJump = true;
+}
+
+show_debug_message(doubleJump);
