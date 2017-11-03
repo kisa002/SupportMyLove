@@ -43,18 +43,23 @@ if(place_meeting(x, y + vspeed, obj_ground))
 	move_contact_solid(270, -1);
 }
 
-if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2))
+if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2) || place_meeting(x, y - vspeed, obj_block3))
 {
 	if(instance_exists(obj_block1))
 		block = instance_place(x, y - vspeed, obj_block1);
-	else
+	else if(instance_exists(obj_block2))
 		block = instance_place(x, y - vspeed, obj_block2);
+	else
+	{
+		block = instance_place(x, y - vspeed, obj_block3);
+		block.hit = true;
+	}
 		
 	if(!block.isMove)
 		block.isMove = true;
 }
 
-if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2))
+if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_meeting(x, y, obj_lever3))
 {
 	if(keyboard_check(vk_down))
 		if(!lever_checked)
@@ -67,6 +72,12 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2))
 				
 				lever.image_xscale = -1;
 			}
+			else if(instance_exists(obj_lever3))
+			{
+				lever = instance_place(x, y, obj_lever3);
+				
+				lever.image_xscale = -1;
+			}
 			else
 			{
 				lever = instance_place(x, y, obj_lever2);
@@ -74,7 +85,10 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2))
 				lever.image_xscale = lever.image_xscale * -1;
 			}
 	
-			lever.isUse = !lever.isUse;
+			if(instance_exists(obj_lever1) || instance_exists(obj_lever3))
+				lever.isUse = true;
+			else
+				lever.isUse = !lever.isUse;
 		}
 }
 else
@@ -86,3 +100,6 @@ if(place_meeting(x, y, obj_scaffolding))
 	
 	scaffolding.isUse = true;
 }
+
+if(place_meeting(x, y, obj_trap2))
+	instance_destroy();

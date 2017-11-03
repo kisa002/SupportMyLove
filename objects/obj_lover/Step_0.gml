@@ -6,12 +6,12 @@ x += moveSpeed;
 if(place_meeting(x, y + 4, obj_block1) || place_meeting(x, y + 4, obj_block2))
 	y -= 4;
 
-if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block1) || place_meeting(x, y + vspeed, obj_block2))
+if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block1) || place_meeting(x, y + vspeed, obj_block2) || place_meeting(x, y + vspeed, obj_move_block))
 {
 	vspeed = 0;	
 	gravity = 0;
 	
-	if(!(place_meeting(x, y + vspeed, obj_lever_block) || place_meeting(x, y + vspeed, obj_lever_block1) || place_meeting(x, y + vspeed, obj_lever_block2)))
+	if(!(place_meeting(x, y + vspeed, obj_lever_block) || place_meeting(x, y + vspeed, obj_lever_block1) || place_meeting(x, y + vspeed, obj_lever_block2)|| place_meeting(x, y + vspeed, obj_move_block)))
 		move_contact_solid(270, -1);
 }
 else
@@ -19,3 +19,10 @@ else
 	
 if(place_meeting(x, y, obj_trap) || place_meeting(x, y, obj_trap2))
 	instance_destroy();
+	
+if(place_meeting(x, y, obj_scaffolding2))
+{
+	scaffolding = instance_place(x, y, obj_scaffolding2);
+	
+	scaffolding.isUse = true;
+}
