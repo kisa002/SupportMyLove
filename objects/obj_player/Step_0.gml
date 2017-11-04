@@ -176,6 +176,3 @@ if(x > (room_width + sprite_width / 2))
 	
 	instance_destroy();
 }
-
-if(place_meeting(x, y, obj_jumping))
-	vspeed = -22;
