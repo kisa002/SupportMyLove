@@ -92,11 +92,11 @@ if(!place_meeting(x, y, obj_ground) && !place_meeting(x, y, obj_move_block))
 
 if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2) || place_meeting(x, y - vspeed, obj_block3))
 {
-	if(instance_exists(obj_block1))
+	if(instance_place(x, y - vspeed, obj_block1))
 		block = instance_place(x, y - vspeed, obj_block1);
-	else if(instance_exists(obj_block2))
+	else if(instance_place(x, y - vspeed, obj_block2))
 		block = instance_place(x, y - vspeed, obj_block2);
-	else
+	else if(instance_place(x, y - vspeed, obj_block3))
 	{
 		block = instance_place(x, y - vspeed, obj_block3);
 		block.hit = true;
