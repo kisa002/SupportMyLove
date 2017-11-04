@@ -3,6 +3,8 @@
 
 moveSpeed = 4;
 jumpSpeed = 1.5;
+jumpMax = -8;
+
 //jumpSpeed = 7;
 
 gravity = 0.5;

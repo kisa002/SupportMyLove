@@ -26,7 +26,7 @@ if(keyboard_check(vk_up))
 	{
 		if(doubleJump)
 		{
-			vspeed = -7;
+			vspeed = jumpMax;
 			doubleJump = false;
 		}
 		
@@ -42,13 +42,13 @@ else if(keyboard_key_release(vk_up))
 			doubleJump = false;
 	}
 
-if(vspeed < -7)
+if(vspeed < jumpMax)
 {
 	if(isJump && doubleJump)
 		doubleJump = false;
 		
 	isJump = true;	
-	vspeed = -7;
+	vspeed = jumpMax;
 }
 
 if(place_meeting(x, y - vspeed - 2, obj_ground))
@@ -143,4 +143,12 @@ if(place_meeting(x, y, obj_double))
 	doubleJump = true;
 }
 
-show_debug_message(doubleJump);
+if(place_meeting(x, y, obj_trap))
+	instance_destroy();
+
+if(x > (room_width + sprite_width / 2))
+{
+	system.clear1 = true;
+	
+	instance_destroy();
+}

@@ -2,4 +2,12 @@
 // vnycall74@naver.com - http://holykisa.tistory.com
 
 if(keyboard_check(ord("R")))
-	game_restart();
+	room_restart();
+	
+if(clear1 && clear2)
+{
+	clear1 = false;
+	clear2 = false;
+	
+	room_goto_next();
+}

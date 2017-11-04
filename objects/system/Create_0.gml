@@ -1,8 +1,5 @@
 /// @description description
 // vnycall74@naver.com - http://holykisa.tistory.com
 
-isUse = false;
-
-moveSpeed = 7;
-
-prevY = y;
+clear1 = false;
+clear2 = false;
