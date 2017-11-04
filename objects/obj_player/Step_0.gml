@@ -1,70 +1,70 @@
 /// @description Move
 // vnycall74@naver.com - http://holykisa.tistory.com
-
-if(keyboard_check(vk_left))
-{
-	if(!place_meeting(x - moveSpeed, y + sprite_height / 2 - 20, obj_ground))
+if!(instance_exists(o_hand)){
+	if(keyboard_check(vk_left))
 	{
-		x -= moveSpeed;
-	}
-	
-	image_speed = 1;
-	
-	image_xscale = 1;
-}
-else
-	image_speed = 0;
-
-if(keyboard_check(vk_right))
-{
-	if(!place_meeting(x + moveSpeed, y + sprite_height / 2 - 20, obj_ground) && !place_meeting(x, y - (sprite_height / 2) - 1, obj_move_block))
-		x += moveSpeed;
-		
-	image_speed = 1;
-	
-	image_xscale = 1;
-}
-else
-	image_speed = 0;
-		
-if(keyboard_check(vk_up))
-{
-	if(!place_meeting(x, y - (sprite_height / 2) - 1, obj_ground))
-	{
-		if(!isJump || doubleJump)
+		if(!place_meeting(x - moveSpeed, y + sprite_height / 2 - 20, obj_ground))
 		{
-			if(doubleJump)
+			x -= moveSpeed;
+		}
+	
+		image_speed = 1;
+	
+		image_xscale = 1;
+	}
+	else
+		image_speed = 0;
+
+	if(keyboard_check(vk_right))
+	{
+		if(!place_meeting(x + moveSpeed, y + sprite_height / 2 - 20, obj_ground) && !place_meeting(x, y - (sprite_height / 2) - 1, obj_move_block))
+			x += moveSpeed;
+		
+		image_speed = 1;
+	
+		image_xscale = 1;
+	}
+	else
+		image_speed = 0;
+		
+	if(keyboard_check(vk_up))
+	{
+		if(!place_meeting(x, y - (sprite_height / 2) - 1, obj_ground))
+		{
+			if(!isJump || doubleJump)
 			{
-				vspeed = jumpMax;
-				doubleJump = false;
+				if(doubleJump)
+				{
+					vspeed = jumpMax;
+					doubleJump = false;
+				}
+				if(vspeed==0)
+					vspeed=-4;
+				vspeed -= jumpSpeed;		
+				gravity = 1;
 			}
-			if(vspeed==0)
-				vspeed=-4;
-			vspeed -= jumpSpeed;		
+		}
+		else
+		{
+			isJump = true;		
+		
+			vspeed = 0;
 			gravity = 1;
 		}
 	}
-	else
+
+	if(keyboard_check_released(vk_up))
 	{
-		isJump = true;		
+		if(!isJump)
+			if(vspeed < 0)
+			{
+				isJump = true;
 		
-		vspeed = 0;
-		gravity = 1;
+				if(doubleJump)
+					doubleJump = false;
+			}
 	}
 }
-
-if(keyboard_check_released(vk_up))
-{
-	if(!isJump)
-		if(vspeed < 0)
-		{
-			isJump = true;
-		
-			if(doubleJump)
-				doubleJump = false;
-		}
-}
-
 //show_debug_message(doubleJump);
 
 if(vspeed < jumpMax)
@@ -115,6 +115,8 @@ if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_
 		
 	if(!block.isMove)
 		block.isMove = true;
+	if (vspeed<0)
+		vspeed=0;
 }
 
 if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_meeting(x, y, obj_lever3) || place_meeting(x, y, obj_lever4))
