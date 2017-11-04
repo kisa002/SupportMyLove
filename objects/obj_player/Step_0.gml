@@ -40,7 +40,7 @@ if(keyboard_check(vk_up))
 			}
 		
 			vspeed -= jumpSpeed;		
-			gravity = 0.5;
+			gravity = 1;
 		}
 	}
 	else
@@ -48,7 +48,7 @@ if(keyboard_check(vk_up))
 		isJump = true;		
 		
 		vspeed = 0;
-		gravity = 0.5;
+		gravity = 1;
 	}
 }
 
@@ -86,7 +86,7 @@ if(place_meeting(x, y + vspeed, obj_ground))
 }
 
 if(!place_meeting(x, y, obj_ground))
-	gravity = 0.5;
+	gravity = 1;
 
 if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2) || place_meeting(x, y - vspeed, obj_block3))
 {
@@ -104,7 +104,7 @@ if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_
 		block.isMove = true;
 }
 
-if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_meeting(x, y, obj_lever3))
+if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_meeting(x, y, obj_lever3) || place_meeting(x, y, obj_lever4))
 {
 	if(keyboard_check(vk_down))
 		if(!lever_checked)
@@ -114,6 +114,10 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_m
 			if(instance_exists(obj_lever1))
 			{
 				lever = instance_place(x, y, obj_lever1);
+			}
+			else if(instance_exists(obj_lever4))
+			{
+				lever = instance_place(x, y, obj_lever4);
 			}
 			else if(instance_exists(obj_lever3))
 			{
@@ -125,7 +129,7 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_m
 				lever.isAni = true;
 			}
 	
-			if(instance_exists(obj_lever1) || instance_exists(obj_lever3))
+			if(instance_exists(obj_lever1) || instance_exists(obj_lever3) || instance_exists(obj_lever4))
 				lever.isUse = true;
 			else
 				lever.isUse = !lever.isUse;
@@ -163,3 +167,6 @@ if(x > (room_width + sprite_width / 2))
 	
 	instance_destroy();
 }
+
+if(place_meeting(x, y, obj_jumping))
+	vspeed = -20;

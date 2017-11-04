@@ -3,11 +3,11 @@
 
 moveSpeed = 4;
 jumpSpeed = 2;
-jumpMax = -9;
+jumpMax = -11 ;
 
 //jumpSpeed = 7;
 
-gravity = 0.5;
+gravity = 1;
 
 isJump = false;
 

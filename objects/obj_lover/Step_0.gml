@@ -23,14 +23,24 @@ if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_
 else
 	gravity = 0.5;
 	
-if(place_meeting(x, y, obj_trap) || place_meeting(x, y, obj_trap2))
+if(place_meeting(x, y, obj_trap) || place_meeting(x, y, obj_trap2) || place_meeting(x, y, obj_trap3))
 	instance_destroy();
 	
-if(place_meeting(x, y, obj_scaffolding2))
+if(place_meeting(x, y, obj_scaffolding2) || place_meeting(x, y, obj_scaffolding3))
 {
-	scaffolding = instance_place(x, y, obj_scaffolding2);
+	if(instance_exists(obj_scaffolding2))
+	{
+		scaffolding = instance_place(x, y, obj_scaffolding2);
 	
-	scaffolding.isUse = true;
+		scaffolding.isUse = true;
+	}
+	
+	if(instance_exists(obj_scaffolding3))
+	{
+		scaffolding = instance_place(x, y, obj_scaffolding3);
+	
+		scaffolding.isUse = true;
+	}
 }
 
 if(x >= room_width + (sprite_width / 2))
