@@ -23,10 +23,10 @@ if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_
 else
 	gravity = 0.5;
 	
-if(place_meeting(x, y, obj_trap) || place_meeting(x, y, obj_trap2) || place_meeting(x, y, obj_trap3))
+if(place_meeting(x, y, obj_trap) || place_meeting(x, y, obj_trap2) || place_meeting(x, y, obj_trap3)) || place_meeting(x,y,obj_trap4)
 	instance_destroy();
 	
-if(place_meeting(x, y, obj_scaffolding2) || place_meeting(x, y, obj_scaffolding3))
+if(place_meeting(x, y, obj_scaffolding2) || place_meeting(x, y, obj_scaffolding3) || place_meeting(x, y, obj_scaffolding3_2))
 {
 	if(instance_exists(obj_scaffolding2))
 	{
@@ -41,6 +41,13 @@ if(place_meeting(x, y, obj_scaffolding2) || place_meeting(x, y, obj_scaffolding3
 	
 		scaffolding.isUse = true;
 	}
+	
+	if(instance_exists(obj_scaffolding3_2))
+	{
+		scaffolding = instance_place(x, y, obj_scaffolding3_2);
+	
+		scaffolding.isUse = true;
+	}
 }
 
 if(x >= room_width + (sprite_width / 2))
@@ -49,5 +56,16 @@ if(x >= room_width + (sprite_width / 2))
 	instance_destroy();
 }
 
+if (place_meeting(x,y,obj_turtle)){
+	instance_destroy();
+}
+else if (place_meeting(x,y+vspeed,obj_turtle)){
+	obj_turtle.x=obj_turtle.xprevious;
+	obj_turtle.hspeed=6;
+}
+
 if(place_meeting(x, y, obj_lever_block) || place_meeting(x, y, obj_lever_block1) || place_meeting(x, y, obj_lever_block2))
+	instance_destroy();
+	
+if(place_meeting(x, y, obj_trap_small))
 	instance_destroy();
