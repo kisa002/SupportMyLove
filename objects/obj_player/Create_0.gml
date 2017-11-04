@@ -9,7 +9,7 @@ jumpMax = -11 ;
 
 gravity = 1;
 
-isJump = true;
+isJump = false;
 
 lever_checekd = false;
 

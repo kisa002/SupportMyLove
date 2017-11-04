@@ -1,9 +1,11 @@
 /// @description Move
 // vnycall74@naver.com - http://holykisa.tistory.com
 
-x += moveSpeed;
+if (!place_meeting(x+moveSpeed,y,obj_youngchang)){
+	x += moveSpeed;
+}
 
-if(place_meeting(x, y + 4, obj_block1) || place_meeting(x, y + 4, obj_block2))
+if(place_meeting(x, y + 4, obj_block1) || place_meeting(x, y + 4, obj_block2)) || place_meeting(x,y+4,obj_block4)
 {
 	y -= 4;
 	
@@ -12,7 +14,7 @@ if(place_meeting(x, y + 4, obj_block1) || place_meeting(x, y + 4, obj_block2))
 else if(moveSpeed != 1.7)
 	moveSpeed = 1.7;
 
-if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block1) || place_meeting(x, y + vspeed, obj_block2) || place_meeting(x, y + vspeed, obj_move_block))
+if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block1) || place_meeting(x, y + vspeed, obj_block2) || place_meeting(x, y + vspeed, obj_move_block)) || place_meeting(x,y+4,obj_block4)
 {
 	vspeed = 0;	
 	gravity = 0;
@@ -58,10 +60,6 @@ if(x >= room_width + (sprite_width / 2))
 
 if (place_meeting(x,y,obj_turtle)){
 	instance_destroy();
-}
-else if (place_meeting(x,y+vspeed,obj_turtle)){
-	obj_turtle.x=obj_turtle.xprevious;
-	obj_turtle.hspeed=6;
 }
 
 if(place_meeting(x, y, obj_lever_block) || place_meeting(x, y, obj_lever_block1) || place_meeting(x, y, obj_lever_block2))

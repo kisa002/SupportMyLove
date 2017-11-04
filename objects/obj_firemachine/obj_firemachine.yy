@@ -5,7 +5,7 @@
     "name": "obj_firemachine",
     "eventList": [
         {
-            "id": "03c6a867-afae-4055-8393-24bbaf7721f7",
+            "id": "196b8799-373f-478c-affb-5e3fa11a2f0b",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
@@ -15,7 +15,7 @@
             "m_owner": "64ac6a64-ba2a-4f84-8b81-0c1d3eb2ac20"
         },
         {
-            "id": "705ba6b5-e76e-4f2e-9ab7-910a5a5a6164",
+            "id": "48265881-4f54-4ef9-b328-51fc1dedaaa3",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
@@ -25,7 +25,7 @@
             "m_owner": "64ac6a64-ba2a-4f84-8b81-0c1d3eb2ac20"
         },
         {
-            "id": "0e7a2cf5-6daa-4c9e-8958-0c46e952dc82",
+            "id": "54a71843-27bd-49c6-a9a2-3e19a2359cca",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,

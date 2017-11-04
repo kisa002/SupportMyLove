@@ -4,7 +4,7 @@
 isMove = false;
 
 moveSpeed = 4;
-prevY = y;
+prevY = y-12;
 
 movePosion = 1;
 

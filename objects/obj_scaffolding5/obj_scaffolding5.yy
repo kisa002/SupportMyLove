@@ -5,7 +5,7 @@
     "name": "obj_scaffolding5",
     "eventList": [
         {
-            "id": "09aef1c0-56b5-4926-9768-93f042804f30",
+            "id": "0173e018-440d-4c1e-8df7-6514e1b297e5",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
@@ -15,7 +15,7 @@
             "m_owner": "6e524761-c57d-4784-bdf4-a57f662ccfc1"
         },
         {
-            "id": "99efeb60-324a-48ee-8d1d-dd7abe33281a",
+            "id": "b4b0356a-efd4-4aa0-ad01-f4e75a5fc2df",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
@@ -25,7 +25,7 @@
             "m_owner": "6e524761-c57d-4784-bdf4-a57f662ccfc1"
         },
         {
-            "id": "bcd4526f-e0be-4c02-b267-a90361fad55a",
+            "id": "53cc2a8d-4213-46d1-b7d7-ae2b682f6e8b",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
