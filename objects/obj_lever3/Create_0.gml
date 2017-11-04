@@ -4,3 +4,7 @@
 isUse = false;
 
 blockSpeed = obj_lover.moveSpeed;
+
+isAni = false;
+
+image_speed = 0;

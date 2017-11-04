@@ -3,7 +3,7 @@
 
 if(isMove)
 {
-	if(count < 2)
+	if(count < 1)
 		if(hit)
 			if(prevY - (sprite_height / 3) < y)
 				y -= 2;

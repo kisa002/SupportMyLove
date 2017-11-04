@@ -1,19 +1,30 @@
 /// @description Move
 // vnycall74@naver.com - http://holykisa.tistory.com
 
+
 if(keyboard_check(vk_left))
 {
-	x -= moveSpeed;
+	if(!place_meeting(x - moveSpeed, y - (sprite_height / 2), obj_ground))
+	{
+		x -= moveSpeed;
 	
-	image_speed = 1;
-	image_xscale = -1;
+		image_speed = 1;
+		image_xscale = -1;
+	}
+	else
+		x += moveSpeed;
 }
 else if(keyboard_check(vk_right))
 {
-	x += moveSpeed;
+	if(!place_meeting(x + moveSpeed, y - (sprite_height / 2), obj_ground))
+	{
+		x += moveSpeed;
 	
-	image_speed = 1;
-	image_xscale = 1;
+		image_speed = 1;
+		image_xscale = 1;
+	}
+	else
+		x += moveSpeed;
 }
 else
 {
@@ -65,8 +76,6 @@ if(place_meeting(x, y + vspeed, obj_ground))
 
 	vspeed = 0;	
 	gravity = 0;
-	
-	move_contact_solid(270, -1);
 }
 
 if(! place_meeting(x, y, obj_ground))
@@ -99,19 +108,20 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_m
 			{
 				lever = instance_place(x, y, obj_lever1);
 				
-				lever.image_xscale = -1;
+				//lever.image_xscale = -1;
 			}
 			else if(instance_exists(obj_lever3))
 			{
 				lever = instance_place(x, y, obj_lever3);
 				
-				lever.image_xscale = -1;
+				//lever.image_xscale = -1;
 			}
 			else
 			{
 				lever = instance_place(x, y, obj_lever2);
 				
-				lever.image_xscale = lever.image_xscale * -1;
+				lever.isAni = true;
+				//lever.image_xscale = lever.image_xscale * -1;
 			}
 	
 			if(instance_exists(obj_lever1) || instance_exists(obj_lever3))

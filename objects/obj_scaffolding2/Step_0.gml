@@ -6,9 +6,9 @@ if(isUse)
 	if(prevY + sprite_height / 2 >= y)
 		y += 0.5;
 			
-	if(instance_place(x, y + 32, obj_trap2))
+	if(instance_place(x, y + (8 * 8), obj_trap2))
 	{
-		trap = instance_place(x, y + 32, obj_trap2);
+		trap = instance_place(x, y + (8 * 8), obj_trap2);
 		trap.y += moveSpeed;
 	}
 }

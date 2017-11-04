@@ -3,8 +3,14 @@
 
 x += moveSpeed;
 
-if(place_meeting(x, y + 8, obj_block1) || place_meeting(x, y + 8, obj_block2))
-	y -= 8;
+if(place_meeting(x, y + 4, obj_block1) || place_meeting(x, y + 4, obj_block2))
+{
+	y -= 4;
+	
+	moveSpeed = moveSpeed + 1;
+}
+else if(moveSpeed != 1.7)
+	moveSpeed = 1.7;
 
 if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_block1) || place_meeting(x, y + vspeed, obj_block2) || place_meeting(x, y + vspeed, obj_move_block))
 {
@@ -32,3 +38,6 @@ if(x >= room_width + (sprite_width / 2))
 	system.clear2 = true;
 	instance_destroy();
 }
+
+if(place_meeting(x, y, obj_lever_block) || place_meeting(x, y, obj_lever_block1) || place_meeting(x, y, obj_lever_block2))
+	instance_destroy();
