@@ -12,8 +12,6 @@ if(isUse)
 	if(isAni)
 	{
 		image_speed = 1;
-		
-		isAni = true;
 	}
 }
 else
@@ -27,8 +25,6 @@ else
 	if(isAni)
 	{
 		image_speed = -1;
-		
-		isAni = true;
 	}
 }
 
@@ -37,7 +33,7 @@ if(isAni)
 	if(image_speed == -1 && image_index == 1)
 	{
 		image_speed = 0;
-		//image_index = 0;
+		image_index = 0;
 	
 		//image_xscale = image_xscale * -1;
 		
@@ -47,7 +43,7 @@ if(isAni)
 	if(image_speed == 1 && image_index == 8)
 	{
 		image_speed = 0;
-		//image_index = 9;
+		image_index = 9;
 	
 		//image_xscale = image_xscale * -1;
 		

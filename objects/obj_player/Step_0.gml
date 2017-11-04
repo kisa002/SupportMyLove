@@ -1,43 +1,36 @@
 /// @description Move
 // vnycall74@naver.com - http://holykisa.tistory.com
 
-
 if(keyboard_check(vk_left))
 {
-	if(!place_meeting(x - moveSpeed, y , obj_ground))
+	if(!place_meeting(x - moveSpeed, y + sprite_height / 2 - 20, obj_ground))
 	{
 		x -= moveSpeed;
-	
-		image_speed = 1;
-		image_xscale = -1;
 	}
-}
-else if(keyboard_check(vk_right))
-{
-	if(!place_meeting(x + moveSpeed, y , obj_ground))
-	{
-		x += moveSpeed;
 	
-		image_speed = 1;
-		image_xscale = 1;
-	}
+	image_speed = 1;
+	
+	image_xscale = -1;
 }
 else
-{
-	image_index = 0;
 	image_speed = 0;
-}
 
+if(keyboard_check(vk_right))
+{
+	if(!place_meeting(x + moveSpeed, y + sprite_height / 2 - 20, obj_ground))
+		x += moveSpeed;
+		
+	image_speed = 1;
+	
+	image_xscale = 1;
+}
+else
+	image_speed = 0;
+		
 if(keyboard_check(vk_up))
 {
-	if(place_meeting(x, y - (sprite_height / 2) + 10, obj_ground))
+	if(!place_meeting(x, y - (sprite_height / 2) - 1, obj_ground))
 	{
-		vspeed = 0;
-		gravity = 0.5;
-		
-		isJump = true;
-	}
-	else	
 		if(!isJump || doubleJump)
 		{
 			if(doubleJump)
@@ -49,12 +42,20 @@ if(keyboard_check(vk_up))
 			vspeed -= jumpSpeed;		
 			gravity = 0.5;
 		}
+	}
+	else
+	{
+		isJump = true;		
+		
+		vspeed = 0;
+		gravity = 0.5;
+	}
 }
 
 if(keyboard_check_released(vk_up))
 {
 	if(!isJump)
-		if(vspeed != 0)
+		if(vspeed < 0)
 		{
 			isJump = true;
 		
@@ -62,6 +63,8 @@ if(keyboard_check_released(vk_up))
 				doubleJump = false;
 		}
 }
+
+//show_debug_message(doubleJump);
 
 if(vspeed < jumpMax)
 {
@@ -72,24 +75,15 @@ if(vspeed < jumpMax)
 	vspeed = jumpMax;
 }
 
-if(vspeed != 0)
-	if(place_meeting(x, y - vspeed, obj_ground))
-	{
-		isJump = false;
-		move_contact_solids(1, vspeed-2);
-		vspeed = 0;	
-		gravity = 0;
-		//show_message(place_meeting(x,y,obj_ground))
-		
-		
-	}
-
-//if(place_meeting(x, y, obj_ground))
-//{
-//	isJump = false;
+if(place_meeting(x, y + vspeed, obj_ground))
+{
+	gravity = 0;
+	vspeed = 0;
 	
-//	y -= 1;
-//}
+	isJump = false;
+	
+	move_contact_solid(270, -1);
+}
 
 if(!place_meeting(x, y, obj_ground))
 	gravity = 0.5;
@@ -128,7 +122,6 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_m
 			else
 			{
 				lever = instance_place(x, y, obj_lever2);
-				
 				lever.isAni = true;
 			}
 	
