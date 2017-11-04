@@ -2,8 +2,8 @@
 // vnycall74@naver.com - http://holykisa.tistory.com
 
 moveSpeed = 4;
-jumpSpeed = 1.5;
-jumpMax = -8;
+jumpSpeed = 2;
+jumpMax = -9;
 
 //jumpSpeed = 7;
 

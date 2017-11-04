@@ -4,27 +4,23 @@
 
 if(keyboard_check(vk_left))
 {
-	if(!place_meeting(x - moveSpeed, y - (sprite_height / 2), obj_ground))
+	if(!place_meeting(x - moveSpeed, y , obj_ground))
 	{
 		x -= moveSpeed;
 	
 		image_speed = 1;
 		image_xscale = -1;
 	}
-	else
-		x += moveSpeed;
 }
 else if(keyboard_check(vk_right))
 {
-	if(!place_meeting(x + moveSpeed, y - (sprite_height / 2), obj_ground))
+	if(!place_meeting(x + moveSpeed, y , obj_ground))
 	{
 		x += moveSpeed;
 	
 		image_speed = 1;
 		image_xscale = 1;
 	}
-	else
-		x += moveSpeed;
 }
 else
 {
@@ -33,25 +29,39 @@ else
 }
 
 if(keyboard_check(vk_up))
-	if(!isJump || doubleJump)
+{
+	if(place_meeting(x, y - (sprite_height / 2) + 10, obj_ground))
 	{
-		if(doubleJump)
-		{
-			vspeed = jumpMax;
-			doubleJump = false;
-		}
-		
-		vspeed -= jumpSpeed;		
+		vspeed = 0;
 		gravity = 0.5;
-	}
-else if(keyboard_key_release(vk_up))
-	if(vspeed != 0)
-	{
-		isJump = true;
 		
-		if(doubleJump)
-			doubleJump = false;
+		isJump = true;
 	}
+	else	
+		if(!isJump || doubleJump)
+		{
+			if(doubleJump)
+			{
+				vspeed = jumpMax;
+				doubleJump = false;
+			}
+		
+			vspeed -= jumpSpeed;		
+			gravity = 0.5;
+		}
+}
+
+if(keyboard_check_released(vk_up))
+{
+	if(!isJump)
+		if(vspeed != 0)
+		{
+			isJump = true;
+		
+			if(doubleJump)
+				doubleJump = false;
+		}
+}
 
 if(vspeed < jumpMax)
 {
@@ -62,23 +72,26 @@ if(vspeed < jumpMax)
 	vspeed = jumpMax;
 }
 
-if(place_meeting(x, y - vspeed - 2, obj_ground))
-{
-	isJump = false;
+if(vspeed != 0)
+	if(place_meeting(x, y - vspeed, obj_ground))
+	{
+		isJump = false;
+		move_contact_solids(1, vspeed-2);
+		vspeed = 0;	
+		gravity = 0;
+		//show_message(place_meeting(x,y,obj_ground))
+		
+		
+	}
+
+//if(place_meeting(x, y, obj_ground))
+//{
+//	isJump = false;
 	
-	vspeed = 0;	
-	gravity = 0.5;
-}
+//	y -= 1;
+//}
 
-if(place_meeting(x, y + vspeed, obj_ground))
-{
-	isJump = false;
-
-	vspeed = 0;	
-	gravity = 0;
-}
-
-if(! place_meeting(x, y, obj_ground))
+if(!place_meeting(x, y, obj_ground))
 	gravity = 0.5;
 
 if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2) || place_meeting(x, y - vspeed, obj_block3))
@@ -107,21 +120,16 @@ if(place_meeting(x, y, obj_lever1) || place_meeting(x, y, obj_lever2) || place_m
 			if(instance_exists(obj_lever1))
 			{
 				lever = instance_place(x, y, obj_lever1);
-				
-				//lever.image_xscale = -1;
 			}
 			else if(instance_exists(obj_lever3))
 			{
 				lever = instance_place(x, y, obj_lever3);
-				
-				//lever.image_xscale = -1;
 			}
 			else
 			{
 				lever = instance_place(x, y, obj_lever2);
 				
 				lever.isAni = true;
-				//lever.image_xscale = lever.image_xscale * -1;
 			}
 	
 			if(instance_exists(obj_lever1) || instance_exists(obj_lever3))
