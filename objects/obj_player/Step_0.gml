@@ -20,16 +20,17 @@ if(keyboard_check(vk_right))
 	if(!place_meeting(x + moveSpeed, y + sprite_height / 2 - 20, obj_ground))
 		x += moveSpeed;
 		
-	image_speed = 1;
-	
+	image_speed = 1;	
 	image_xscale = 1;
+	
+	
 }
 else
 	image_speed = 0;
 		
 if(keyboard_check(vk_up))
 {
-	if(!place_meeting(x, y - (sprite_height / 2) - 1, obj_ground))
+	if(!place_meeting(x, y - (sprite_height / 2) - 1, obj_ground) && !place_meeting(x, y - (sprite_height / 2) - 1, obj_move_block))
 	{
 		if(!isJump || doubleJump)
 		{
@@ -38,7 +39,10 @@ if(keyboard_check(vk_up))
 				vspeed = jumpMax;
 				doubleJump = false;
 			}
-		
+			
+			if(vspeed == 0)
+				vspeed = -4;
+				
 			vspeed -= jumpSpeed;		
 			gravity = 1;
 		}
@@ -64,8 +68,6 @@ if(keyboard_check_released(vk_up))
 		}
 }
 
-//show_debug_message(doubleJump);
-
 if(vspeed < jumpMax)
 {
 	if(isJump && doubleJump)
@@ -75,17 +77,17 @@ if(vspeed < jumpMax)
 	vspeed = jumpMax;
 }
 
-if(place_meeting(x, y + vspeed, obj_ground))
+if(place_meeting(x, y + vspeed, obj_ground) || place_meeting(x, y + vspeed, obj_move_block))
 {
 	gravity = 0;
 	vspeed = 0;
 	
 	isJump = false;
 	
-	move_contact_solid(270, -1);
+	//move_contact_solid(270, -1);
 }
 
-if(!place_meeting(x, y, obj_ground))
+if(!place_meeting(x, y, obj_ground) && !place_meeting(x, y, obj_move_block))
 	gravity = 1;
 
 if(place_meeting(x, y - vspeed, obj_block1) || place_meeting(x, y - vspeed, obj_block2) || place_meeting(x, y - vspeed, obj_block3))
@@ -169,4 +171,4 @@ if(x > (room_width + sprite_width / 2))
 }
 
 if(place_meeting(x, y, obj_jumping))
-	vspeed = -20;
+	vspeed = -22;

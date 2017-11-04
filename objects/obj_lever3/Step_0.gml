@@ -3,13 +3,12 @@
 
 if(isUse)
 {
-	if(instance_exists(obj_lover))
-		if(!place_meeting(obj_move_block.x + (blockSpeed * 2), obj_move_block.y - (sprite_height / 2), obj_ground))
-		{
-			obj_move_block.x += blockSpeed;
+	if(!place_meeting(obj_move_block.x + (blockSpeed * 2), obj_move_block.y - (sprite_height / 2), obj_ground))
+	{
+		obj_move_block.x += blockSpeed;
 		
-			image_speed = 1;
-		}
+		image_speed = 1;
+	}
 }
 
 if(image_speed == 1 && image_index == 9)
