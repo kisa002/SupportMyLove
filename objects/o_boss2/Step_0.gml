@@ -16,5 +16,4 @@ if instance_exists(obj_player){
 }
 if(!instance_exists(obj_block3)){
 	instance_destroy();
-	room_goto_next();
 }

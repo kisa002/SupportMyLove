@@ -4,4 +4,4 @@
 image_speed = 1;
 image_index = 0;
 
-obj_player.vspeed = obj_player.jumpMax;
+obj_player.vspeed = obj_player.jumpMax*1.2;

@@ -1,6 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
-if !instance_exists(o_hand){
+if instance_exists(o_stopnpc){
+	if(alpha!=0)
+		alpha-=0.005;
+	else{
+		//game end
+		show_message("그렇게 둘이 행복하게 살았답니다!");
+		game_end();
+	}
+}
+else if !instance_exists(o_hand){
 	if (alpha!=1)
 		alpha+=0.01;
 	else{

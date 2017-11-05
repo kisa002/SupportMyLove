@@ -4,7 +4,16 @@
     "mvc": "1.0",
     "name": "obj_lever_block",
     "eventList": [
-        
+        {
+            "id": "02af0097-c5b3-4449-b705-42ee8acf99b8",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "4ee5a97f-aae5-4b7e-90d1-2b7d45cfef98",
+            "enumb": 0,
+            "eventtype": 4,
+            "m_owner": "da936013-957c-4c5e-ab44-58e21d4ac295"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "parentObjectId": "00000000-0000-0000-0000-000000000000",

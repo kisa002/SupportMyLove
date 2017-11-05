@@ -1,4 +1,4 @@
 /// @description Insert description here
 // You can write your code in this editor
-vspeed=choose(1,-1)*3;
+vspeed=random_range(-1,1)*4;
 hspeed=-6;

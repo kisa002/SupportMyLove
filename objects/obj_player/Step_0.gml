@@ -185,3 +185,7 @@ if(x > (room_width + sprite_width / 2))
 
 if(place_meeting(x, y, obj_spring))
 	vspeed = -22;
+
+
+if (x<0)
+	instance_destroy();

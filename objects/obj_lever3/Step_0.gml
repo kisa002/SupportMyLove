@@ -3,16 +3,18 @@
 
 if(isUse)
 {
-	if(!place_meeting(obj_move_block.x + (blockSpeed * 2), obj_move_block.y - (sprite_height / 2), obj_ground))
-	{
-		obj_move_block.x += blockSpeed;
-		
-		image_speed = 1;
-	}
+   if(!place_meeting(obj_move_block.x + (blockSpeed * 2), obj_move_block.y - (sprite_height / 2), obj_ground))
+   {
+      obj_move_block.x += blockSpeed;
+      
+      image_speed = 1;
+   }
 }
 
-if(image_speed == 1 && image_index == 9)
+if(image_index == 8)
 {
-	image_index = 9;
-	image_speed = 0;
+   image_speed = 0;
+   image_index = 8;
+   
+   iseUse = false;
 }
